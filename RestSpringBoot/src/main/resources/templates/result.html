@@ -1,0 +1,49 @@
+<html xmlns:th="http://thymeleaf.org">
+<table>
+	<!-- <tr>
+		<td><h4>Ola</h4></td>
+		<td><h4 th:text="${jsonOla}"></h4></td>
+	</tr>
+	<tr>
+		<td><h4>Uber</h4></td>
+		<td><h4 th:text="${jsonUber}"></h4></td>
+	</tr>
+	<tr>
+		<td><h4>Fast Track</h4></td>
+		<td><h4 th:text="${jsonFasttrack}"></h4></td>
+	</tr> -->
+	<tr>
+		<td>Ola</td>
+		<td>
+			<table border="1" style="width: 300px">
+				<tr th:each="map : ${jsonOla}">
+					<td th:text="${map.displayName}">Vehicle</td>
+					<td th:text="${map.price}">Price</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr th:each="element : ${jsonUber}">
+		<td>Uber</td>
+		<td>
+		<table border="1" style="width: 300px">
+			<tr th:each="map : ${element.value}">
+				<td th:text="${map.vehicleViewDisplayName}">Vehicle</td>
+				<td th:text="${map.fareString}">Price</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td>Fast Track</td>
+		<td>
+			<table border="1" style="width: 300px">
+				<tr th:each="map : ${jsonFasttrack}">
+					<td th:text="${map.VehType}">Vehicle</td>
+					<td th:text="${map.Fare}">Price</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</html>
