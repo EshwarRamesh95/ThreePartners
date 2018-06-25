@@ -26,19 +26,21 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView save() {
+		LatLong latLong = new LatLong();
+		Map<String, Object> latLongMap = latLong.getLatLong();
 		JersyGetClient jersyGetClient = new JersyGetClient();
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("result");
 		
 		new Thread(() -> {
 			System.out.println("Running Uber!!!");
-			jsonUber = jersyGetClient.searchUber();
+			jsonUber = jersyGetClient.searchUber(latLongMap);
 			modelAndView.addObject("jsonUber", jsonUber);		
 		}).start();
 		//jsonUber = "dummy";
 		new Thread(() -> {
 			System.out.println("Running Ola!!!");
-		    jsonOla = jersyGetClient.searchOla();
+		    jsonOla = jersyGetClient.searchOla(latLongMap);
 			modelAndView.addObject("jsonOla", jsonOla);
 		}).start();
 		
